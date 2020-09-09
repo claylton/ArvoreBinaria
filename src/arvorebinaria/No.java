@@ -16,12 +16,12 @@ public class No<T> {
     private No<T> esquerda;
     private No<T> direita;
 
-    public No(T valor, No<T> pai, No<T> esquerda, No<T> direita) {
+/*    public No(T valor, No<T> pai, No<T> esquerda, No<T> direita) {
         this.valor = valor;
         this.pai = pai;
         this.esquerda = null;
         this.direita = null;
-    }
+    }*/
 
     
     public T getValor() {
