@@ -5,20 +5,57 @@
  */
 package arvorebinaria;
 
+import java.util.Iterator;
+
 /**
  *
  * @author clayl
+ * @param <T>
  */
 public interface IArvoreBinaria<T> {
-    public void inserir(T elemento);
-    public No<T> consultaIterativa (T elemento);
-    public No<T> consultaRecursiva (T elemento);
-    public No<T> removerPreOrdem(T elemento);
-    public No<T> removerPosOrdem(T elemento);
-    public No<T> removerInOrdem(T elemento);
-    public void preOrdem();
-    public void posOrdem();
-    public void inOrdem();
+    // Retorna a quantidade de nós da árvore
+public int size();
+
+//retorna se a árvore está vazia
+public boolean isEmpty();
+
+// Retorna um interador sobre os elementos armazenados da arvore
+public Iterator<T> iterator();
+
+//insere um element na arvore
+public void insert(T element);
+
+//remove um element da arvore
+public void remove(T element);
+
+//navegar na arvore(print)
+public String navigateLRN();
+public String navigateNLR();
+public String navigateLNR();
+
+//inverter arvore
+public void invertTree();
+
+//pesquisa um elemento na arvore
+public boolean contains(T element);
+
+//grau de um nó
+public int getNodeDegree(No<T> node);
+
+//profundidade de um nó
+public int getNodeDepth(No<T> node);
+
+//altura de um nó 
+public int getNodeHeight(No<T> node);
+
+//nivel de um nó
+public int getNodeLevel(No<T> node);
+
+//numero de nós recursivo
+public int recursiveSize();
+
+//printa a arvore
+public void print();
 
 
 }
