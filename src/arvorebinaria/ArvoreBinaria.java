@@ -26,7 +26,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             this.raiz = new No(elemento);
             tamanho++;
         } else {
-
+            inserirAux(raiz, elemento);
         }
     }
 
@@ -105,8 +105,25 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         PrintTree.print(raiz);
     }
 
-    private void inserirAux(No<T> noAtual, T elemento) {
-        if (noAtual.getValor().compareTo(elemento) == -1) {
+private void inserirAux(No<T> no, T elemento){
+        if(no.getValor().compareTo(elemento) < 0){
+            //direita
+            if(!no.contemFilhoDireito()){
+                no.setDireita(new No(no, elemento));
+                tamanho++;
+            }else{
+                inserirAux(no.getDireita(), elemento);
+            }
+            
+            
+        }else if(no.getValor().compareTo(elemento) > 0){
+            //esquerda
+            if(!no.contemFilhoEsquerdo()){
+                no.setEsquerda(new No(no, elemento));
+                tamanho++;
+            }else{
+                inserirAux(no.getEsquerda(), elemento);
+            }
             
         }
     }

@@ -20,7 +20,7 @@ public class No<T> {
         this.valor = valor;
     }
 
-    public No(T valor, No<T> pai) {
+    public No(No<T> pai,T valor) {
         this.valor = valor;
         this.pai = pai;
     }
@@ -58,5 +58,11 @@ public class No<T> {
         this.direita = direita;
     }
     
+    public boolean contemFilhoDireito(){
+        return direita != null;
+    }
     
+    public boolean contemFilhoEsquerdo(){
+        return esquerda != null;
+    }
 }

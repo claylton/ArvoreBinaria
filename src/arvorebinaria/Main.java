@@ -15,7 +15,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ArvoreBinaria arvoreGenerica = new ArvoreBinaria();
         
+        arvoreGenerica.inserir(10);
+        arvoreGenerica.inserir(4);
+        arvoreGenerica.inserir(6);
+        arvoreGenerica.inserir(7);
+        
+        arvoreGenerica.imprimeArvore();
     }
     
 }
