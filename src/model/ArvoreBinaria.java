@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package arvorebinaria;
+package model;
 
+import Controlers.IArvoreBinaria;
 import java.util.Iterator;
 
 /**
@@ -31,7 +32,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     @Override
-    public boolean consulta() {
+    public boolean consulta(T elemento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -102,12 +103,10 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public void imprimeArvore() {
-        PrintTree.print(raiz);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-private void inserirAux(No<T> no, T elemento){
-        if(no.getValor().compareTo(elemento) < 0){
-            //direita
+    public  void inserirAux(No<T> no, T elemento) {
+                if(no.getValor().compareTo(elemento) < 0){
             if(!no.contemFilhoDireito()){
                 no.setDireita(new No(no, elemento));
                 tamanho++;
@@ -117,7 +116,6 @@ private void inserirAux(No<T> no, T elemento){
             
             
         }else if(no.getValor().compareTo(elemento) > 0){
-            //esquerda
             if(!no.contemFilhoEsquerdo()){
                 no.setEsquerda(new No(no, elemento));
                 tamanho++;
@@ -127,4 +125,5 @@ private void inserirAux(No<T> no, T elemento){
             
         }
     }
+
 }
