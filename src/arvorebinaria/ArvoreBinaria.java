@@ -11,19 +11,23 @@ import java.util.Iterator;
  *
  * @author clayl
  */
-public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
-    
+public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T> {
+
     private No<T> raiz;
     private int tamanho;
 
     public ArvoreBinaria() {
-        raiz = new No<T>();
         tamanho = 0;
     }
 
     @Override
     public void inserir(T elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.raiz == null) {
+            this.raiz = new No(elemento);
+            tamanho++;
+        } else {
+
+        }
     }
 
     @Override
@@ -100,5 +104,10 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     public void imprimeArvore() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    private void inserirAux(No<T> noAtual, T elemento) {
+        if (noAtual.getValor().compareTo(elemento) == -1) {
+            
+        }
+    }
 }
