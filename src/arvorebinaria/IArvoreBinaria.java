@@ -13,49 +13,38 @@ import java.util.Iterator;
  * @param <T>
  */
 public interface IArvoreBinaria<T> {
-    // Retorna a quantidade de nós da árvore
-public int size();
 
-//retorna se a árvore está vazia
-public boolean isEmpty();
+public void inserir(T elemento);
+
+public 
+
+public int tamanhoArvore();
+
+public boolean estaVazio();
 
 // Retorna um interador sobre os elementos armazenados da arvore
-public Iterator<T> iterator();
+public Iterator<T> iterador();
 
-//insere um element na arvore
-public void insert(T element);
+public void remover(T elemento);
 
-//remove um element da arvore
-public void remove(T element);
+public String caminhoLRN();
+public String caminhoNLR();
+public String caminhoLNR();
 
-//navegar na arvore(print)
-public String navigateLRN();
-public String navigateNLR();
-public String navigateLNR();
+public void inverterArvore();
 
-//inverter arvore
-public void invertTree();
+public boolean removerElemento(T elemento);
 
-//pesquisa um elemento na arvore
-public boolean contains(T element);
+public int getGrauNo(No<T> node);
 
-//grau de um nó
-public int getNodeDegree(No<T> node);
+public int getProfundidadeNo(No<T> node);
+ 
+public int getAlturaNo(No<T> node);
 
-//profundidade de um nó
-public int getNodeDepth(No<T> node);
+public int getNoNivel(No<T> node);
 
-//altura de um nó 
-public int getNodeHeight(No<T> node);
+public int tamanhoRecursivo();
 
-//nivel de um nó
-public int getNodeLevel(No<T> node);
-
-//numero de nós recursivo
-public int recursiveSize();
-
-//printa a arvore
-public void print();
-
+public void imprimeArvore();
 
 }
