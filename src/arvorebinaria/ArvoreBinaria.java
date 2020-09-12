@@ -20,92 +20,85 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         raiz = new No<T>();
         tamanho = 0;
     }
-    
 
     @Override
-    public void insert(T elemento) {
-        if (this.tamanho == 0) {
-            this.raiz.setValor(elemento);
-        } else {
-        
-        }
-    }
-
-    @Override
-    public int size() {
+    public void inserir(T elemento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean consulta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public int getGrauNo(No<T> node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(T element) {
+    public int getProfundidadeNo(No<T> node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String navigateLRN() {
+    public int getAlturaNo(No<T> node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String navigateNLR() {
+    public int getNoNivel(No<T> node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String navigateLNR() {
+    public int numeroNosRecursivo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void invertTree() {
+    public void remover(T elemento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean contains(T element) {
+    public String navegacaoLRN() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getNodeDegree(No<T> node) {
+    public String navegacaoNLR() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getNodeDepth(No<T> node) {
+    public String navegacaoLNR() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getNodeHeight(No<T> node) {
+    public void inverterArvore() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int getNodeLevel(No<T> node) {
+    public int tamanhoArvore() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int recursiveSize() {
+    public boolean estaVazio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void print() {
+    public Iterator<T> iterador() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    @Override
+    public void imprimeArvore() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
