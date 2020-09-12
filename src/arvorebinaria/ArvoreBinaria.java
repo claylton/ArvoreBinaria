@@ -102,7 +102,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public void imprimeArvore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PrintTree.print(raiz);
     }
 
     private void inserirAux(No<T> noAtual, T elemento) {
