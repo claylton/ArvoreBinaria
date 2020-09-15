@@ -77,12 +77,13 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public int getNoNivel(T elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getProfundidadeNo(elemento);    
     }
 
     @Override
     public int numeroNosRecursivo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(raiz == null)return 0;
+        return numeroNosRecursivoAuxiliar(raiz) + 1;
     }
 
     @Override
@@ -201,5 +202,18 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         } else {
             return noAuxEsq;
         }
+    }
+    
+    private int numeroNosRecursivoAuxiliar(No<T> no){
+        int count = 0;
+        
+        if(no.contemFilhoEsquerdo()){
+            count += numeroNosRecursivoAuxiliar(no.getEsquerda()) + 1;
+        }
+        if(no.contemFilhoDireito()){
+            count += numeroNosRecursivoAuxiliar(no.getDireita()) + 1;
+        }
+        
+        return count;
     }
 }
