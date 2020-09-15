@@ -19,12 +19,15 @@ public class Main {
     public static void main(String[] args) {
         ArvoreBinaria arvoreGenerica = new ArvoreBinaria();
         
-        arvoreGenerica.inserir(10);
-        arvoreGenerica.inserir(4);
-        arvoreGenerica.inserir(6);
-        arvoreGenerica.inserir(7);
+        int[] toAdd = new int[]{50, 45, 65, 35, 46, 75, 15, 40,70, 85, 5, 38, 42, 36, 43};
         
+        for (int i : toAdd) {
+            arvoreGenerica.inserir(i);
+        }
         arvoreGenerica.imprimeArvore();
+        System.out.println(arvoreGenerica.consulta(50));
+        System.out.println(arvoreGenerica.consulta(12154654));
+        System.out.println(arvoreGenerica.consulta(85));
     }
     
 }

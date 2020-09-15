@@ -33,7 +33,9 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public boolean consulta(T elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         if(elemento == null)return false;
+         
+         return consultaAuxiliar(raiz, elemento);
     }
 
     @Override
@@ -103,7 +105,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public void imprimeArvore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PrintTree.print(raiz);
     }
     public  void inserirAux(No<T> no, T elemento) {
                 if(no.getValor().compareTo(elemento) < 0){
@@ -125,5 +127,18 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             
         }
     }
-
+    
+    private boolean consultaAuxiliar(No<T> no, T elemento){
+        if(no.getValor().compareTo(elemento) == 0){
+            return true;
+        }
+        boolean tem = false;
+        if(no.contemFilhoEsquerdo()){
+            tem = tem || consultaAuxiliar(no.getEsquerda(), elemento);
+        }
+        if(no.contemFilhoDireito()){
+            tem = tem || consultaAuxiliar(no.getDireita(), elemento);
+        }
+        return tem;
+    }
 }
