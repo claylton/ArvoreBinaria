@@ -6,6 +6,7 @@
 package view;
 
 import model.ArvoreBinaria;
+import model.No;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Main {
         System.out.println(arvoreGenerica.consulta(50));
         System.out.println(arvoreGenerica.consulta(12154654));
         System.out.println(arvoreGenerica.consulta(85));
+        System.out.println(arvoreGenerica.getGrauNo(43));
     }
     
 }

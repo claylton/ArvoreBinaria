@@ -20,13 +20,13 @@ public void inserir(T elemento);
 
 public boolean consulta(T elemento);
 
-public int getGrauNo(No<T> node);
+public int getGrauNo(T elemento);
 
-public int getProfundidadeNo(No<T> node);
+public int getProfundidadeNo(No<T> no);
 
-public int getAlturaNo(No<T> node);
+public int getAlturaNo(No<T> no);
 
-public int getNoNivel(No<T> node);
+public int getNoNivel(No<T> no);
 
 public int numeroNosRecursivo();
 
