@@ -22,11 +22,11 @@ public boolean consulta(T elemento);
 
 public int getGrauNo(T elemento);
 
-public int getProfundidadeNo(No<T> no);
+public int getProfundidadeNo(T elemento);
 
-public int getAlturaNo(No<T> no);
+public int getAlturaNo(T elemento);
 
-public int getNoNivel(No<T> no);
+public int getNoNivel(T elemento);
 
 public int numeroNosRecursivo();
 

@@ -30,6 +30,7 @@ public class Main {
         System.out.println(arvoreGenerica.consulta(12154654));
         System.out.println(arvoreGenerica.consulta(85));
         System.out.println(arvoreGenerica.getGrauNo(43));
+        System.out.println("profundidade: "+ arvoreGenerica.getProfundidadeNo(38));
     }
     
 }
