@@ -69,7 +69,10 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public int getAlturaNo(T elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(elemento == null)return -1;
+        No<T> no = buscaAuxiliar(raiz, elemento);
+        if(no == null) return -1;
+        return alturaAuxiliar(no);
     }
 
     @Override
@@ -181,5 +184,22 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             return 0;
         }
         return profundidadeAuxilar(no.getPai()) + 1;
+    }
+    
+    private int alturaAuxiliar(No<T> no){
+        int noAuxDir = 0;
+        int noAuxEsq = 0;
+        
+        if (no.contemFilhoEsquerdo()) {
+            noAuxEsq = alturaAuxiliar(no.getEsquerda()) + 1;
+        }
+        if (no.contemFilhoDireito()) {
+            noAuxDir = alturaAuxiliar(no.getDireita()) + 1;
+        }
+        if (noAuxDir > noAuxEsq) {
+            return noAuxDir;
+        } else {
+            return noAuxEsq;
+        }
     }
 }
