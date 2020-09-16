@@ -34,6 +34,9 @@ public class Main {
         System.out.println("Altura: "+arvoreGenerica.getAlturaNo(38));
         System.out.println("Tamanho recursivo: "+ arvoreGenerica.numeroNosRecursivo());
         //System.out.println("Tamanho normal: "+ arvoreGenerica.tamanhoArvore());
+        System.out.println("Navegação LRN: "+ arvoreGenerica.navegacaoLRN());
+        System.out.println("Navegação LNR: "+ arvoreGenerica.navegacaoLNR());
+        System.out.println("Navegação NLR: "+ arvoreGenerica.navegacaoNLR());
     }
     
 }

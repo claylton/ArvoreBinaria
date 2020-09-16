@@ -44,11 +44,11 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     public int getGrauNo(T elemento) {
         int cont = 0;
         No<T> no = buscaAuxiliar(raiz, elemento);
-        
+
         if (no == null) {
             return -1;
         }
-        
+
         if (no.contemFilhoDireito()) {
             cont++;
         }
@@ -60,29 +60,39 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public int getProfundidadeNo(T elemento) {
-        if(elemento == null)return -1;
+        if (elemento == null) {
+            return -1;
+        }
         No<T> no = buscaAuxiliar(raiz, elemento);
-        if(no == null) return -1;
+        if (no == null) {
+            return -1;
+        }
         return profundidadeAuxilar(no);
-        
+
     }
 
     @Override
     public int getAlturaNo(T elemento) {
-        if(elemento == null)return -1;
+        if (elemento == null) {
+            return -1;
+        }
         No<T> no = buscaAuxiliar(raiz, elemento);
-        if(no == null) return -1;
+        if (no == null) {
+            return -1;
+        }
         return alturaAuxiliar(no);
     }
 
     @Override
     public int getNoNivel(T elemento) {
-        return getProfundidadeNo(elemento);    
+        return getProfundidadeNo(elemento);
     }
 
     @Override
     public int numeroNosRecursivo() {
-        if(raiz == null)return 0;
+        if (raiz == null) {
+            return 0;
+        }
         return numeroNosRecursivoAuxiliar(raiz) + 1;
     }
 
@@ -93,17 +103,17 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public String navegacaoLRN() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return auxLRN(raiz);
     }
 
     @Override
     public String navegacaoNLR() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return auxNLR(raiz);
     }
 
     @Override
     public String navegacaoLNR() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return auxLNR(raiz);
     }
 
     @Override
@@ -173,24 +183,24 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         if (no.contemFilhoEsquerdo()) {
             noAux = buscaAuxiliar(no.getEsquerda(), elemento);
         }
-        
+
         if (no.contemFilhoDireito() && noAux == null) {
             return buscaAuxiliar(no.getDireita(), elemento);
         }
         return noAux;
     }
-    
-    private int profundidadeAuxilar(No<T> no){
-        if(no == raiz){
+
+    private int profundidadeAuxilar(No<T> no) {
+        if (no == raiz) {
             return 0;
         }
         return profundidadeAuxilar(no.getPai()) + 1;
     }
-    
-    private int alturaAuxiliar(No<T> no){
+
+    private int alturaAuxiliar(No<T> no) {
         int noAuxDir = 0;
         int noAuxEsq = 0;
-        
+
         if (no.contemFilhoEsquerdo()) {
             noAuxEsq = alturaAuxiliar(no.getEsquerda()) + 1;
         }
@@ -203,17 +213,57 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             return noAuxEsq;
         }
     }
-    
-    private int numeroNosRecursivoAuxiliar(No<T> no){
+
+    private int numeroNosRecursivoAuxiliar(No<T> no) {
         int count = 0;
-        
-        if(no.contemFilhoEsquerdo()){
+
+        if (no.contemFilhoEsquerdo()) {
             count += numeroNosRecursivoAuxiliar(no.getEsquerda()) + 1;
         }
-        if(no.contemFilhoDireito()){
+        if (no.contemFilhoDireito()) {
             count += numeroNosRecursivoAuxiliar(no.getDireita()) + 1;
         }
-        
+
         return count;
+    }
+
+    private String auxLRN(No<T> no) {
+        String elementos = "";
+        if (no.contemFilhoEsquerdo()) {
+            elementos += auxLRN(no.getEsquerda());
+        }
+        if (no.contemFilhoDireito()) {
+            elementos += auxLRN(no.getDireita());
+        }
+        elementos += no.getValor() + ", ";
+        return elementos;
+    }
+
+    private String auxNLR(No<T> no) {
+        String elementos = "";
+
+        elementos += no.getValor() + ", ";
+
+        if (no.contemFilhoEsquerdo()) {
+            elementos += auxNLR(no.getEsquerda());
+        }
+        if (no.contemFilhoDireito()) {
+            elementos += auxNLR(no.getDireita());
+        }
+        return elementos;
+    }
+
+    private String auxLNR(No<T> no) {
+        String elementos = "";
+        if (no.contemFilhoEsquerdo()) {
+            elementos += auxLNR(no.getEsquerda());
+        }
+
+        elementos += no.getValor() + ", ";
+
+        if (no.contemFilhoDireito()) {
+            elementos += auxLNR(no.getDireita());
+        }
+        return elementos;
     }
 }
