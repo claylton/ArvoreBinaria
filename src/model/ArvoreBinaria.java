@@ -107,7 +107,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         }else if(no.contemFilhoDireito() ^ no.contemFilhoEsquerdo()){
             removerUmFilho(no);
         }else{
-            
+            removerDoisFilhos(no);
         }
     }
 
@@ -311,4 +311,18 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             } 
         }
     }
+    private void removerDoisFilhos(No<T> no){
+        No<T> subEsquerda = no.getEsquerda();
+        No<T> maior = maiorNo(subEsquerda);
+        no.setValor(maior.getValor());
+        removerUmFilho(maior);
+    }
+    
+    private No<T> maiorNo(No<T> no){
+        if(no.contemFilhoDireito()){
+            return maiorNo(no.getDireita());
+        }
+        return no;
+    }
+    
 }

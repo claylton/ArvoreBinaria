@@ -38,7 +38,7 @@ public class Main {
         System.out.println("Navegação LNR: "+ arvoreGenerica.navegacaoLNR());
         System.out.println("Navegação NLR: "+ arvoreGenerica.navegacaoNLR());
         
-        arvoreGenerica.remover(38);
+        arvoreGenerica.remover(65);
         arvoreGenerica.imprimeArvore();
     }
     
