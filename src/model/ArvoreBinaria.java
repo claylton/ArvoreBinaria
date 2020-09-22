@@ -99,14 +99,18 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public void remover(T elemento) {
-        if(elemento == null)return;
+        if (elemento == null) {
+            return;
+        }
         No<T> no = buscaAuxiliar(raiz, elemento);
-        if(no == null)return;
-        if(!no.contemFilhoDireito() && !no.contemFilhoEsquerdo()){
+        if (no == null) {
+            return;
+        }
+        if (!no.contemFilhoDireito() && !no.contemFilhoEsquerdo()) {
             removerFolha(no);
-        }else if(no.contemFilhoDireito() ^ no.contemFilhoEsquerdo()){
+        } else if (no.contemFilhoDireito() ^ no.contemFilhoEsquerdo()) {
             removerUmFilho(no);
-        }else{
+        } else {
             removerDoisFilhos(no);
         }
     }
@@ -128,7 +132,9 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public void inverterArvore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (raiz != null) {
+            inverterArvoreAux(raiz);
+        }
     }
 
     @Override
@@ -276,31 +282,31 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         }
         return elementos;
     }
-    
-    private void removerFolha(No<T> no){
+
+    private void removerFolha(No<T> no) {
         No pai = no.getPai();
-        if(pai.contemFilhoDireito()){
-            if(pai.getDireita() == no){
+        if (pai.contemFilhoDireito()) {
+            if (pai.getDireita() == no) {
                 pai.setDireita(null);
             }
-        }else if(pai.contemFilhoEsquerdo()){
-            if(pai.getEsquerda() == no){
+        } else if (pai.contemFilhoEsquerdo()) {
+            if (pai.getEsquerda() == no) {
                 pai.setEsquerda(null);
             }
         }
-        
+
     }
-    
-    private void removerUmFilho(No<T> no){
+
+    private void removerUmFilho(No<T> no) {
         No pai = no.getPai();
-        if(pai.contemFilhoDireito()){
-            if (pai.getDireita() == no){
+        if (pai.contemFilhoDireito()) {
+            if (pai.getDireita() == no) {
                 if (no.contemFilhoDireito()) {
-                pai.setDireita(no.getDireita());                    
+                    pai.setDireita(no.getDireita());
                 } else {
                     pai.setDireita(no.getEsquerda());
                 }
-            } else if (pai.contemFilhoEsquerdo()){
+            } else if (pai.contemFilhoEsquerdo()) {
                 if (pai.getEsquerda() == no) {
                     if (no.contemFilhoEsquerdo()) {
                         pai.setEsquerda(no.getEsquerda());
@@ -308,21 +314,48 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
                         pai.setEsquerda(no.getEsquerda());
                     }
                 }
-            } 
+            }
         }
     }
-    private void removerDoisFilhos(No<T> no){
+
+    private void removerDoisFilhos(No<T> no) {
         No<T> subEsquerda = no.getEsquerda();
         No<T> maior = maiorNo(subEsquerda);
         no.setValor(maior.getValor());
         removerUmFilho(maior);
     }
-    
-    private No<T> maiorNo(No<T> no){
-        if(no.contemFilhoDireito()){
+
+    private No<T> maiorNo(No<T> no) {
+        if (no.contemFilhoDireito()) {
             return maiorNo(no.getDireita());
         }
         return no;
     }
-    
+
+    private void inverteFilho(No<T> no) {
+        No<T> noAux;
+
+        if (no.contemFilhoDireito()) {
+            noAux = no.getDireita();
+            no.setDireita(no.getEsquerda());
+            no.setEsquerda(noAux);
+
+        } else if (no.contemFilhoEsquerdo()) {
+            noAux = no.getEsquerda();
+            no.setEsquerda(no.getDireita());
+            no.setDireita(noAux);
+        }
+    }
+
+    private void inverterArvoreAux(No<T> no) {
+
+        inverteFilho(no);
+        
+        if (no.contemFilhoEsquerdo()) {
+            inverterArvoreAux(no.getEsquerda());
+        }
+        if (no.contemFilhoDireito()) {
+            inverterArvoreAux(no.getDireita());
+        }
+    }
 }
