@@ -11,6 +11,7 @@ import java.util.Iterator;
 /**
  *
  * @author clayl
+ * @param <T>
  */
 public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T> {
 
@@ -98,7 +99,16 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public void remover(T elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(elemento == null)return;
+        No<T> no = buscaAuxiliar(raiz, elemento);
+        if(no == null)return;
+        if(!no.contemFilhoDireito() && !no.contemFilhoEsquerdo()){
+            removerFolha(no);
+        }else if(no.contemFilhoDireito() ^ no.contemFilhoEsquerdo()){
+            
+        }else{
+            
+        }
     }
 
     @Override
@@ -123,12 +133,12 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public int tamanhoArvore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tamanho;
     }
 
     @Override
     public boolean estaVazio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return raiz == null;
     }
 
     @Override
@@ -265,5 +275,19 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             elementos += auxLNR(no.getDireita());
         }
         return elementos;
+    }
+    
+    private void removerFolha(No<T> no){
+        No pai = no.getPai();
+        if(pai.contemFilhoDireito()){
+            if(pai.getDireita() == no){
+                pai.setDireita(null);
+            }
+        }else if(pai.contemFilhoEsquerdo()){
+            if(pai.getEsquerda() == no){
+                pai.setEsquerda(null);
+            }
+        }
+        
     }
 }
