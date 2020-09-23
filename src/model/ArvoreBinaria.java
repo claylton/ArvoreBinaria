@@ -6,6 +6,7 @@
 package model;
 
 import Controlers.IArvoreBinaria;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Iterator;
  * @author clayl
  * @param <T>
  */
-public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T> {
+public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>, Iterable<T> {
 
     private No<T> raiz;
     private int tamanho;
@@ -148,8 +149,10 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     @Override
-    public Iterator<T> iterador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Iterator<T> iterator() {
+        ArrayList<T> lista = new ArrayList();
+        arrayListArvore(lista, raiz);
+        return new ArvoreBinariaIterator(lista);
     }
 
     @Override
@@ -358,4 +361,15 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             inverterArvoreAux(no.getDireita());
         }
     }
+        
+    private void arrayListArvore(ArrayList<T> array, No<T> no){
+        if(no.contemFilhoEsquerdo()){
+            arrayListArvore(array, no.getEsquerda());
+        }
+        if(no.contemFilhoDireito()){
+            arrayListArvore(array, no.getDireita());
+        }
+        array.add(no.getValor());
+    }
+    
 }

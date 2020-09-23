@@ -41,6 +41,11 @@ public class Main {
 //        arvoreGenerica.remover(65);
 arvoreGenerica.inverterArvore();
         arvoreGenerica.imprimeArvore();
+        
+        
+        for (Object i : arvoreGenerica) {
+            System.out.println(i);
+        }
     }
     
 }

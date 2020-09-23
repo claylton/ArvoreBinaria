@@ -43,7 +43,7 @@ public int tamanhoArvore();
 public boolean estaVazio();
 
 // Retorna um interador sobre os elementos armazenados da arvore
-public Iterator<T> iterador();
+public Iterator<T> iterator();
 
 public void imprimeArvore();
 
