@@ -25,11 +25,10 @@ public class Main {
         for (int i : toAdd) {
             arvoreGenerica.inserir(i);
         }
+        System.out.println("Imprimindo a Arvore:");
         arvoreGenerica.imprimeArvore();
-        System.out.println(arvoreGenerica.consulta(50));
-        System.out.println(arvoreGenerica.consulta(12154654));
-        System.out.println(arvoreGenerica.consulta(85));
-        System.out.println(arvoreGenerica.getGrauNo(43));
+        System.out.println("Consulta numero : "+arvoreGenerica.consulta(50));
+        System.out.println("Grau do no 43: "+arvoreGenerica.getGrauNo(43));
         System.out.println("profundidade: "+ arvoreGenerica.getProfundidadeNo(50));
         System.out.println("Altura: "+arvoreGenerica.getAlturaNo(38));
         System.out.println("Tamanho recursivo: "+ arvoreGenerica.numeroNosRecursivo());
@@ -38,14 +37,24 @@ public class Main {
         System.out.println("Navegação LNR: "+ arvoreGenerica.navegacaoLNR());
         System.out.println("Navegação NLR: "+ arvoreGenerica.navegacaoNLR());
         
-//        arvoreGenerica.remover(65);
-arvoreGenerica.inverterArvore();
+        /*
+        System.out.println("Arvore:");
         arvoreGenerica.imprimeArvore();
+        System.out.println("Remover 45");
+        arvoreGenerica.remover(45);*/
         
+        /*
+        System.out.println("Arvore:");
+        arvoreGenerica.imprimeArvore();
+        System.out.println("Arvore inversa:");
+        arvoreGenerica.inverterArvore();
+        arvoreGenerica.imprimeArvore();*/
         
+        /*
+        System.out.println("Iterator");
         for (Object i : arvoreGenerica) {
             System.out.println(i);
-        }
+        }*/
     }
     
 }

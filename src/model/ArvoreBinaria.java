@@ -5,7 +5,6 @@
  */
 package model;
 
-import Controlers.IArvoreBinaria;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -29,7 +28,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             this.raiz = new No(elemento);
             tamanho++;
         } else {
-            inserirAux(raiz, elemento);
+             inserirAux(raiz, elemento);
         }
     }
 
