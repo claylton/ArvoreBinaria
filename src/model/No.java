@@ -65,4 +65,8 @@ public class No<T> {
     public boolean contemFilhoEsquerdo(){
         return esquerda != null;
     }
+    
+    public boolean contemFilhos(){
+        return contemFilhoDireito() || contemFilhoEsquerdo();
+    }
 }

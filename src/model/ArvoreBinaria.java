@@ -313,7 +313,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
                     if (no.contemFilhoEsquerdo()) {
                         pai.setEsquerda(no.getEsquerda());
                     } else {
-                        pai.setEsquerda(no.getEsquerda());
+                        pai.setEsquerda(no.getDireita());
                     }
                 }
             }
@@ -370,5 +370,74 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         }
         array.add(no.getValor());
     }
+    
+    public double media(){
+        return mediaAux(raiz, true);
+    }
+    
+    public double mediaAux(No<T> sub, boolean taNoPrimeiro){
+	if(sub == null){
+		return 0;
+        }
+	
+	double esq = mediaAux(sub.getEsquerda(), false);
+	double dir = mediaAux(sub.getDireita(), false);
+	
+        if(taNoPrimeiro){
+            return (esq + dir + ((Integer)sub.getValor()))/tamanho;
+        }
+	return esq + dir + ((Integer)sub.getValor());
+    }
+    
+
+    
+    public int somaPar(){
+        return somaParAux(raiz);
+    }
+    
+    public int somaParAux(No sub){
+	if(sub == null){
+		return 0;
+	}
+        int valor = 0;
+	if(((Integer)sub.getValor()) % 2 == 0){
+            valor = ((Integer)sub.getValor());
+        }
+	int esq = somaParAux(sub.getEsquerda());
+	int dir = somaParAux(sub.getDireita());
+	
+	return esq + dir + valor;
+
+    }
+    public No<T> getRaiz(){
+        return this.raiz;
+    }
+    public boolean similar(ArvoreBinaria<T> a2){
+        return similarAux(this.raiz, a2.getRaiz());
+    }
+    public boolean similarAux(No sub1, No sub2){
+        if(sub1 == null && sub2 == null){
+            return true;
+        }else if ((sub1 == null || sub2 == null)){
+            return false;
+        }
+        boolean esq = similarAux(sub1.getEsquerda(), sub2.getEsquerda());
+        boolean dir = similarAux(sub1.getDireita(), sub2.getDireita());
+        if(esq && dir){
+            return true;
+        }
+        return false;
+    }
+    
+    public T getMenor(){
+        return menorNo(raiz).getValor();
+    }
+    private No<T> menorNo(No<T> no) {
+        if (no.contemFilhoEsquerdo()) {
+            return menorNo(no.getEsquerda());
+        }
+        return no;
+    }
+    
     
 }
