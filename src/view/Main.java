@@ -24,13 +24,14 @@ public class Main {
         
         
         ArvoreBinaria arvoreGenerica = new ArvoreBinaria();
-        int[] toAdd = new int[]{50,30,65,40,35,48,75};
+        int[] toAdd = new int[]{35,40,20,30};
         for (int i : toAdd) {
             arvoreGenerica.inserir(i);
         }
         arvoreGenerica.imprimeArvore();
+        //System.out.println(arvoreGenerica.navegacaoLNR());
         System.out.println("");
-        
+        System.out.println("");
         
         /*
         
@@ -55,8 +56,7 @@ public class Main {
         */
         
         
-        
-        /*
+                /*
         System.out.println("Imprimindo a Arvore:");
         arvoreGenerica.imprimeArvore();
         /*
@@ -91,7 +91,7 @@ public class Main {
       
         */
        
-        System.out.println(arvoreGenerica.somaPar());
+        //System.out.println(arvoreGenerica.somaPar());
         
        
         

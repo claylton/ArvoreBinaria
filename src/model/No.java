@@ -15,16 +15,27 @@ public class No<T> {
     private No<T> pai;
     private No<T> esquerda;
     private No<T> direita;
+    private String cor;
 
     public No(T valor) {
         this.valor = valor;
+        this.cor = "VERMELHO";
     }
 
     public No(No<T> pai,T valor) {
         this.valor = valor;
         this.pai = pai;
+        this.cor = "VERMELHO";
     }
 
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+    
     
     public T getValor() {
         return valor;
@@ -69,4 +80,55 @@ public class No<T> {
     public boolean contemFilhos(){
         return contemFilhoDireito() || contemFilhoEsquerdo();
     }
+    
+    public boolean contemPai(){
+        return pai != null;
+    }
+    
+    public boolean éFilhoDireito(){
+        if(contemPai()){
+            No<T> pai = getPai();
+            return pai.getDireita() == this;
+        }
+        return false;
+    }
+     public boolean éFilhoEsquerdo(){
+        if(contemPai()){
+            No<T> pai = getPai();
+            return pai.getEsquerda() == this;
+        }
+        return false;
+    }
+    
+    
+    public No<T> getTio() {
+        if(contemPai()){
+            No<T> pai = getPai();
+            if(pai.contemPai()){
+                No<T> avo = pai.getPai();
+                if(pai.éFilhoDireito()){
+                    return avo.getEsquerda();
+                }else{
+                    return avo.getDireita();
+                }
+            }
+        }
+        return null;
+    }
+    
+    public void inverterCor(){
+        if(pai == null)return;
+        
+        if(cor.equals("VERMELHO")){
+            cor = "PRETO";
+        }else{
+            cor = "VERMELHO";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "No{" + "valor=" + valor  + ", cor=" + cor + '}';
+    }
+    
 }

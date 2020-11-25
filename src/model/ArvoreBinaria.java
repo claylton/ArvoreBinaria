@@ -26,10 +26,23 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     public void inserir(T elemento) {
         if (this.raiz == null) {
             this.raiz = new No(elemento);
+            this.raiz.setCor("PRETO");
             tamanho++;
         } else {
-             inserirAux(raiz, elemento);
+             No<T> inserido = inserirAux(raiz, elemento);
+             System.out.println(inserido.toString());
+             if(tamanho == 2){
+                 inserido.setCor("PRETO");
+             }
+             if(inserido.contemPai()){
+                 if(inserido.getPai().getCor().equals("VERMELHO")){
+                     balancear(inserido);
+                     System.out.println("trab");
+                 }
+             }
+            tamanho++;
         }
+        System.out.println("asdasdasdasdsad");
     }
 
     @Override
@@ -159,24 +172,29 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         PrintTree.print(raiz);
     }
 
-    public void inserirAux(No<T> no, T elemento) {
+    public No<T> inserirAux(No<T> no, T elemento) {
         if (no.getValor().compareTo(elemento) < 0) {
             if (!no.contemFilhoDireito()) {
-                no.setDireita(new No(no, elemento));
+                No<T> temp = new No(no, elemento);
+                no.setDireita(temp);
                 tamanho++;
+                return temp;
             } else {
-                inserirAux(no.getDireita(), elemento);
+                return inserirAux(no.getDireita(), elemento);
             }
 
         } else if (no.getValor().compareTo(elemento) > 0) {
             if (!no.contemFilhoEsquerdo()) {
-                no.setEsquerda(new No(no, elemento));
+                No<T> temp = new No(no, elemento);
+                no.setEsquerda(temp);
                 tamanho++;
+                return temp;
             } else {
-                inserirAux(no.getEsquerda(), elemento);
+                return inserirAux(no.getEsquerda(), elemento);
             }
 
         }
+        return null;
     }
 
     private boolean consultaAuxiliar(No<T> no, T elemento) {
@@ -272,8 +290,10 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     private String auxLNR(No<T> no) {
+        System.out.println(no);
         String elementos = "";
         if (no.contemFilhoEsquerdo()) {
+
             elementos += auxLNR(no.getEsquerda());
         }
 
@@ -439,5 +459,133 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         return no;
     }
     
+    private void balancear(No<T> noAtual){
+ 
+        No<T> tio = noAtual.getTio();
+        if(tio == null || tio.getCor().equals("PRETO")){
+            
+            if(noAtual.éFilhoDireito() && noAtual.getPai().éFilhoDireito()){
+                simplesEsquerda(noAtual);
+                System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
+            }else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoEsquerdo()){
+                simplesDireita(noAtual);
+                System.out.println("aksdjaskdjsadasdasdasdas");
+            }else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoDireito()){
+                System.out.println("donfoasdas");
+                duplaEsquerda(noAtual);
+            }else{
+                duplaDireita(noAtual);
+                
+            }
+            
+        }else{
+            System.out.println("asdasd");
+            inverterCores(noAtual);
+        }
+    }
+    
+    private void simplesEsquerda(No<T> noAtual){
+    
+        No<T> pai = noAtual.getPai();
+        No<T> filhoPai = pai.getEsquerda();
+        No<T> avo = pai.getPai();
+        No<T> tataravo = avo.getPai();
+        if(tataravo != null){
+            if(avo.éFilhoDireito()){
+                tataravo.setDireita(pai);
+            }else{
+                tataravo.setEsquerda(pai);
+            }
+            pai.inverterCor();
+        }else{
+            raiz = pai;
+            pai.setCor("PRETO");
+        }
+        
+        avo.setPai(pai);
+        pai.setPai(tataravo);
+        pai.setEsquerda(avo);
+        avo.setDireita(filhoPai);
+        
+        avo.inverterCor(); 
+    }
+    private void simplesDireita(No<T> noAtual){
+    
+        No<T> pai = noAtual.getPai();
+        No<T> filhoPai = pai.getDireita();
+        No<T> avo = pai.getPai();
+        No<T> tataravo = avo.getPai();
+        if(tataravo != null){
+            if(avo.éFilhoDireito()){
+                tataravo.setDireita(pai);
+            }else{
+                tataravo.setEsquerda(pai);
+            }
+            pai.inverterCor();
+        }else{
+            raiz = pai;
+            pai.setCor("PRETO");
+        }
+        
+        avo.setPai(pai);
+        pai.setPai(tataravo);
+        pai.setDireita(avo);
+        avo.setEsquerda(filhoPai);
+        
+        avo.inverterCor();
+    }
+    
+    
+    
+    private void duplaEsquerda(No<T> noAtual){
+
+        
+        No<T> pai = noAtual.getPai();
+        No<T> filhoDireito = noAtual.getDireita();
+        No<T> avo = pai.getPai();
+        avo.setDireita(noAtual);
+        pai.setEsquerda(filhoDireito); 
+        noAtual.setDireita(pai);
+        noAtual.setPai(avo);
+        
+        if(filhoDireito != null){
+            filhoDireito.setPai(pai);
+        }
+        
+        pai.setPai(noAtual);
+        simplesEsquerda(pai);
+        
+    }
+    private void duplaDireita(No<T> noAtual){
+        No<T> pai = noAtual.getPai();
+        No<T> filhoEsquerdo = noAtual.getEsquerda();
+        No<T> avo = pai.getPai();
+        avo.setEsquerda(noAtual);
+        pai.setDireita(filhoEsquerdo); 
+        noAtual.setEsquerda(pai);
+        noAtual.setPai(avo);
+        
+        if(filhoEsquerdo != null){
+            filhoEsquerdo.setPai(pai);
+        }
+        
+        pai.setPai(noAtual);
+        simplesDireita(pai);
+    }
+    
+    private void inverterCores(No<T> no){
+        if(no.contemPai()){
+            No<T> pai = no.getPai();
+        
+            pai.inverterCor();
+            
+            if(pai.contemPai()){
+                 pai.getPai().inverterCor();
+            }
+            no.getTio().inverterCor();
+        }
+    }
+    
+
     
 }
