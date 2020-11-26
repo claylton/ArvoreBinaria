@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
         
         
-        
+        System.out.println("print");
         ArvoreBinaria arvoreGenerica = new ArvoreBinaria();
         int[] toAdd = new int[]{35,40,20,30};
         for (int i : toAdd) {
