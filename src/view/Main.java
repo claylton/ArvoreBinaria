@@ -23,6 +23,7 @@ public class Main {
         
         
         System.out.println("print");
+        System.out.println("commit teste 2");
         ArvoreBinaria arvoreGenerica = new ArvoreBinaria();
         int[] toAdd = new int[]{35,40,20,30};
         for (int i : toAdd) {
