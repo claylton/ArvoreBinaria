@@ -13,8 +13,10 @@ import java.util.List;
  * @author Jonatas
  */
 public class PrintTree {
-    public static void print(No root)
-    {
+
+    public static String print(No root) {
+        String arvore = "<html>";
+
         List<List<String>> lines = new ArrayList<>();
 
         List<No> level = new ArrayList<>();
@@ -38,18 +40,31 @@ public class PrintTree {
                     next.add(null);
                 } else {
                     String aa = n.getValor().toString();
+                    if (n.getCor().equals("PRETO")) {
+                        aa = "<font color=\"black\"> " + n.getValor() + " </font>,";
+                    } else {
+                        aa = "<font color=\"red\"> " + n.getValor() + " </font>,";
+                    }
                     line.add(aa);
-                    if (aa.length() > widest) widest = aa.length();
+                    if (aa.length() > widest) {
+                        widest = aa.length();
+                    }
 
                     next.add(n.getEsquerda());
                     next.add(n.getDireita());
 
-                    if (n.getEsquerda() != null) nn++;
-                    if (n.getDireita() != null) nn++;
+                    if (n.getEsquerda() != null) {
+                        nn++;
+                    }
+                    if (n.getDireita() != null) {
+                        nn++;
+                    }
                 }
             }
 
-            if (widest % 2 == 1) widest++;
+            if (widest % 2 == 1) {
+                widest++;
+            }
 
             lines.add(line);
 
@@ -68,55 +83,73 @@ public class PrintTree {
                 for (int j = 0; j < line.size(); j++) {
 
                     // split node
-                    char c = ' ';
+                    String c = "&nbsp;";
                     if (j % 2 == 1) {
                         if (line.get(j - 1) != null) {
-                            c = (line.get(j) != null) ? '|' : '-';
+                            c = (line.get(j) != null) ? "|" : ".";
                         } else {
-                            if (j < line.size() && line.get(j) != null) c = '-';
+                            if (j < line.size() && line.get(j) != null) {
+                                c = ".";
+                            }
                         }
                     }
                     System.out.print(c);
+                    arvore += c;
 
                     // lines and spaces
                     if (line.get(j) == null) {
                         for (int k = 0; k < perpiece - 1; k++) {
-                            System.out.print(" ");
+                            System.out.print("&nbsp;");
+                            arvore += "&nbsp;";
                         }
                     } else {
 
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? " " : "-");
+                            System.out.print(j % 2 == 0 ? "&nbsp;" : ".");
+                            arvore += j % 2 == 0 ? "&nbsp;" : ".";
+
                         }
                         System.out.print(j % 2 == 0 ? "/" : "\\");
+                        arvore += j % 2 == 0 ? "/" : "\\";
+
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? "-" : " ");
+                            System.out.print(j % 2 == 0 ? "." : "&nbsp;");
+                            arvore += j % 2 == 0 ? "." : "&nbsp;";
                         }
                     }
                 }
                 System.out.println();
+                arvore += "<br>";
             }
 
             // print line of numbers
             for (int j = 0; j < line.size(); j++) {
 
                 String f = line.get(j);
-                if (f == null) f = "";
+                if (f == null) {
+                    f = "";
+                }
                 int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
                 int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
 
                 // a number
                 for (int k = 0; k < gap1; k++) {
-                    System.out.print(" ");
+                    System.out.print("&nbsp;");
+                    arvore += "&nbsp;";
                 }
                 System.out.print(f);
+                arvore += f;
+
                 for (int k = 0; k < gap2; k++) {
-                    System.out.print(" ");
+                    System.out.print("&nbsp;");
+                    arvore += "&nbsp;";
                 }
             }
             System.out.println();
+            arvore += "<br>";
 
             perpiece /= 2;
         }
+        return arvore + "</html>";
     }
 }

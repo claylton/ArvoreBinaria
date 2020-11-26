@@ -45,6 +45,6 @@ public boolean estaVazio();
 // Retorna um interador sobre os elementos armazenados da arvore
 public Iterator<T> iterator();
 
-public void imprimeArvore();
+public String imprimeArvore();
 
 }
