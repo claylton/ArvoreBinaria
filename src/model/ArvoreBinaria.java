@@ -29,17 +29,17 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             this.raiz.setCor("PRETO");
             tamanho++;
         } else {
-             No<T> inserido = inserirAux(raiz, elemento);
-             System.out.println(inserido.toString());
-             if(tamanho == 2){
-                 inserido.setCor("PRETO");
-             }
-             if(inserido.contemPai()){
-                 if(inserido.getPai().getCor().equals("VERMELHO")){
-                     balancear(inserido);
-                     System.out.println("trab");
-                 }
-             }
+            No<T> inserido = inserirAux(raiz, elemento);
+            System.out.println(inserido.toString());
+            if (tamanho == 2) {
+                inserido.setCor("PRETO");
+            }
+            if (inserido.contemPai()) {
+                if (inserido.getPai().getCor().equals("VERMELHO")) {
+                    balancear(inserido);
+                    System.out.println("trab");
+                }
+            }
             tamanho++;
         }
         System.out.println("asdasdasdasdsad");
@@ -124,13 +124,28 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         } else if (no.contemFilhoDireito() ^ no.contemFilhoEsquerdo()) {
             removerUmFilho(no);
         } else {
-            removerDoisFilhos(no);
+            String corNo = no.getCor();
+
+            String corSucessor = removerDoisFilhos(no);
+
+            if (corNo.equals(corSucessor) && (corNo.equals("PRETO"))) {
+
+            }
+
         }
+
+        if (no.getCor().equals("PRETO")) {
+
+        }
+    }
+
+    private void percorreArvore(No<T> no) {
+
     }
 
     @Override
     public String navegacaoLRN() {
-        return auxLRN(raiz);
+        return "<html>" + auxLRN(raiz) + "</html>";
     }
 
     @Override
@@ -278,14 +293,19 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     private String auxLRN(No<T> no) {
-        String elementos = "";
+        String elementos = "";      
         if (no.contemFilhoEsquerdo()) {
             elementos += auxLRN(no.getEsquerda());
         }
         if (no.contemFilhoDireito()) {
             elementos += auxLRN(no.getDireita());
         }
-        elementos += no.getValor() + ", ";
+        if (no.getCor().equals("PRETO")) {
+            elementos += "<font color=\"black\"> " + no.getValor() + " </font>,";
+        } else {
+            elementos += "<font color=\"red\"> " + no.getValor() + " </font>,";
+        }
+
         return elementos;
     }
 
@@ -354,11 +374,13 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
         }
     }
 
-    private void removerDoisFilhos(No<T> no) {
+    private String removerDoisFilhos(No<T> no) {
         No<T> subEsquerda = no.getEsquerda();
         No<T> maior = maiorNo(subEsquerda);
         no.setValor(maior.getValor());
         removerUmFilho(maior);
+
+        return maior.getCor();
     }
 
     private No<T> maiorNo(No<T> no) {
@@ -386,7 +408,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     private void inverterArvoreAux(No<T> no) {
 
         inverteFilho(no);
-        
+
         if (no.contemFilhoEsquerdo()) {
             inverterArvoreAux(no.getEsquerda());
         }
@@ -394,212 +416,211 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             inverterArvoreAux(no.getDireita());
         }
     }
-        
-    private void arrayListArvore(ArrayList<T> array, No<T> no){
-        if(no.contemFilhoEsquerdo()){
+
+    private void arrayListArvore(ArrayList<T> array, No<T> no) {
+        if (no.contemFilhoEsquerdo()) {
             arrayListArvore(array, no.getEsquerda());
         }
-        if(no.contemFilhoDireito()){
+        if (no.contemFilhoDireito()) {
             arrayListArvore(array, no.getDireita());
         }
         array.add(no.getValor());
     }
-    
-    public double media(){
+
+    public double media() {
         return mediaAux(raiz, true);
     }
-    
-    public double mediaAux(No<T> sub, boolean taNoPrimeiro){
-	if(sub == null){
-		return 0;
-        }
-	
-	double esq = mediaAux(sub.getEsquerda(), false);
-	double dir = mediaAux(sub.getDireita(), false);
-	
-        if(taNoPrimeiro){
-            return (esq + dir + ((Integer)sub.getValor()))/tamanho;
-        }
-	return esq + dir + ((Integer)sub.getValor());
-    }
-    
 
-    
-    public int somaPar(){
+    public double mediaAux(No<T> sub, boolean taNoPrimeiro) {
+        if (sub == null) {
+            return 0;
+        }
+
+        double esq = mediaAux(sub.getEsquerda(), false);
+        double dir = mediaAux(sub.getDireita(), false);
+
+        if (taNoPrimeiro) {
+            return (esq + dir + ((Integer) sub.getValor())) / tamanho;
+        }
+        return esq + dir + ((Integer) sub.getValor());
+    }
+
+    public int somaPar() {
         return somaParAux(raiz);
     }
-    
-    public int somaParAux(No sub){
-	if(sub == null){
-		return 0;
-	}
-        int valor = 0;
-	if(((Integer)sub.getValor()) % 2 == 0){
-            valor = ((Integer)sub.getValor());
+
+    public int somaParAux(No sub) {
+        if (sub == null) {
+            return 0;
         }
-	int esq = somaParAux(sub.getEsquerda());
-	int dir = somaParAux(sub.getDireita());
-	
-	return esq + dir + valor;
+        int valor = 0;
+        if (((Integer) sub.getValor()) % 2 == 0) {
+            valor = ((Integer) sub.getValor());
+        }
+        int esq = somaParAux(sub.getEsquerda());
+        int dir = somaParAux(sub.getDireita());
+
+        return esq + dir + valor;
 
     }
-    public No<T> getRaiz(){
+
+    public No<T> getRaiz() {
         return this.raiz;
     }
-    public boolean similar(ArvoreBinaria<T> a2){
+
+    public boolean similar(ArvoreBinaria<T> a2) {
         return similarAux(this.raiz, a2.getRaiz());
     }
-    public boolean similarAux(No sub1, No sub2){
-        if(sub1 == null && sub2 == null){
+
+    public boolean similarAux(No sub1, No sub2) {
+        if (sub1 == null && sub2 == null) {
             return true;
-        }else if ((sub1 == null || sub2 == null)){
+        } else if ((sub1 == null || sub2 == null)) {
             return false;
         }
         boolean esq = similarAux(sub1.getEsquerda(), sub2.getEsquerda());
         boolean dir = similarAux(sub1.getDireita(), sub2.getDireita());
-        if(esq && dir){
+        if (esq && dir) {
             return true;
         }
         return false;
     }
-    
-    public T getMenor(){
+
+    public T getMenor() {
         return menorNo(raiz).getValor();
     }
+
     private No<T> menorNo(No<T> no) {
         if (no.contemFilhoEsquerdo()) {
             return menorNo(no.getEsquerda());
         }
         return no;
     }
-    
-    private void balancear(No<T> noAtual){
- 
+
+    private void balancear(No<T> noAtual) {
+
         No<T> tio = noAtual.getTio();
-        if(tio == null || tio.getCor().equals("PRETO")){
-            
-            if(noAtual.éFilhoDireito() && noAtual.getPai().éFilhoDireito()){
+        if (tio == null || tio.getCor().equals("PRETO")) {
+
+            if (noAtual.éFilhoDireito() && noAtual.getPai().éFilhoDireito()) {
                 simplesEsquerda(noAtual);
                 System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
-            }else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoEsquerdo()){
+            } else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoEsquerdo()) {
                 simplesDireita(noAtual);
                 System.out.println("aksdjaskdjsadasdasdasdas");
-            }else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoDireito()){
+            } else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoDireito()) {
                 System.out.println("donfoasdas");
                 duplaEsquerda(noAtual);
-            }else{
+            } else {
                 duplaDireita(noAtual);
-                
+
             }
-            
-        }else{
+
+        } else {
             System.out.println("asdasd");
             inverterCores(noAtual);
         }
     }
-    
-    private void simplesEsquerda(No<T> noAtual){
-    
+
+    private void simplesEsquerda(No<T> noAtual) {
+
         No<T> pai = noAtual.getPai();
         No<T> filhoPai = pai.getEsquerda();
         No<T> avo = pai.getPai();
         No<T> tataravo = avo.getPai();
-        if(tataravo != null){
-            if(avo.éFilhoDireito()){
+        if (tataravo != null) {
+            if (avo.éFilhoDireito()) {
                 tataravo.setDireita(pai);
-            }else{
+            } else {
                 tataravo.setEsquerda(pai);
             }
             pai.inverterCor();
-        }else{
+        } else {
             raiz = pai;
             pai.setCor("PRETO");
         }
-        
+
         avo.setPai(pai);
         pai.setPai(tataravo);
         pai.setEsquerda(avo);
         avo.setDireita(filhoPai);
-        
-        avo.inverterCor(); 
+
+        avo.inverterCor();
     }
-    private void simplesDireita(No<T> noAtual){
-    
+
+    private void simplesDireita(No<T> noAtual) {
+
         No<T> pai = noAtual.getPai();
         No<T> filhoPai = pai.getDireita();
         No<T> avo = pai.getPai();
         No<T> tataravo = avo.getPai();
-        if(tataravo != null){
-            if(avo.éFilhoDireito()){
+        if (tataravo != null) {
+            if (avo.éFilhoDireito()) {
                 tataravo.setDireita(pai);
-            }else{
+            } else {
                 tataravo.setEsquerda(pai);
             }
             pai.inverterCor();
-        }else{
+        } else {
             raiz = pai;
             pai.setCor("PRETO");
         }
-        
+
         avo.setPai(pai);
         pai.setPai(tataravo);
         pai.setDireita(avo);
         avo.setEsquerda(filhoPai);
-        
+
         avo.inverterCor();
     }
-    
-    
-    
-    private void duplaEsquerda(No<T> noAtual){
 
-        
+    private void duplaEsquerda(No<T> noAtual) {
+
         No<T> pai = noAtual.getPai();
         No<T> filhoDireito = noAtual.getDireita();
         No<T> avo = pai.getPai();
         avo.setDireita(noAtual);
-        pai.setEsquerda(filhoDireito); 
+        pai.setEsquerda(filhoDireito);
         noAtual.setDireita(pai);
         noAtual.setPai(avo);
-        
-        if(filhoDireito != null){
+
+        if (filhoDireito != null) {
             filhoDireito.setPai(pai);
         }
-        
+
         pai.setPai(noAtual);
         simplesEsquerda(pai);
-        
+
     }
-    private void duplaDireita(No<T> noAtual){
+
+    private void duplaDireita(No<T> noAtual) {
         No<T> pai = noAtual.getPai();
         No<T> filhoEsquerdo = noAtual.getEsquerda();
         No<T> avo = pai.getPai();
         avo.setEsquerda(noAtual);
-        pai.setDireita(filhoEsquerdo); 
+        pai.setDireita(filhoEsquerdo);
         noAtual.setEsquerda(pai);
         noAtual.setPai(avo);
-        
-        if(filhoEsquerdo != null){
+
+        if (filhoEsquerdo != null) {
             filhoEsquerdo.setPai(pai);
         }
-        
+
         pai.setPai(noAtual);
         simplesDireita(pai);
     }
-    
-    private void inverterCores(No<T> no){
-        if(no.contemPai()){
+
+    private void inverterCores(No<T> no) {
+        if (no.contemPai()) {
             No<T> pai = no.getPai();
-        
+
             pai.inverterCor();
-            
-            if(pai.contemPai()){
-                 pai.getPai().inverterCor();
+
+            if (pai.contemPai()) {
+                pai.getPai().inverterCor();
             }
             no.getTio().inverterCor();
         }
     }
-    
 
-    
 }
