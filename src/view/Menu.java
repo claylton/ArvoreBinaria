@@ -12,7 +12,7 @@ import model.ArvoreBinaria;
  * @author clayl
  */
 public class Menu extends javax.swing.JFrame {
-    ArvoreBinaria arvore = new ArvoreBinaria();
+    ArvoreBinaria<Integer> arvore = new ArvoreBinaria();
     
     /**
      * Creates new form Menu
@@ -20,8 +20,8 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         
-        String[] toAdd = new String[]{"35","40","20","30"};
-        for (String i : toAdd) {
+        int[] toAdd = new int[]{35,40,20,30};
+        for (int i : toAdd) {
             arvore.inserir(i);
         }
     }
