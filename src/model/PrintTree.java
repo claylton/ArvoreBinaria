@@ -15,7 +15,7 @@ import java.util.List;
 public class PrintTree {
 
     public static String print(No root) {
-        String arvore = "<html>";
+        String arvore = "";
 
         List<List<String>> lines = new ArrayList<>();
 
@@ -40,11 +40,12 @@ public class PrintTree {
                     next.add(null);
                 } else {
                     String aa = n.getValor().toString();
+                    /*
                     if (n.getCor().equals("PRETO")) {
                         aa = "<font color=\"black\"> " + n.getValor() + " </font>,";
                     } else {
                         aa = "<font color=\"red\"> " + n.getValor() + " </font>,";
-                    }
+                    }*/
                     line.add(aa);
                     if (aa.length() > widest) {
                         widest = aa.length();
@@ -86,10 +87,10 @@ public class PrintTree {
                     String c = "&nbsp;";
                     if (j % 2 == 1) {
                         if (line.get(j - 1) != null) {
-                            c = (line.get(j) != null) ? "|" : ".";
+                            c = (line.get(j) != null) ? "|" : "-";
                         } else {
                             if (j < line.size() && line.get(j) != null) {
-                                c = ".";
+                                c = "-";
                             }
                         }
                     }
@@ -105,16 +106,16 @@ public class PrintTree {
                     } else {
 
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? "&nbsp;" : ".");
-                            arvore += j % 2 == 0 ? "&nbsp;" : ".";
+                            System.out.print(j % 2 == 0 ? "&nbsp;" : "-");
+                            arvore += j % 2 == 0 ? "&nbsp;" : "-";
 
                         }
                         System.out.print(j % 2 == 0 ? "/" : "\\");
                         arvore += j % 2 == 0 ? "/" : "\\";
 
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? "." : "&nbsp;");
-                            arvore += j % 2 == 0 ? "." : "&nbsp;";
+                            System.out.print(j % 2 == 0 ? "-" : "&nbsp;");
+                            arvore += j % 2 == 0 ? "-" : "&nbsp;";
                         }
                     }
                 }
@@ -150,6 +151,7 @@ public class PrintTree {
 
             perpiece /= 2;
         }
-        return arvore + "</html>";
+        return arvore ;
     }
+    
 }

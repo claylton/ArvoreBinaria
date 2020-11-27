@@ -184,7 +184,21 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public String imprimeArvore() {
-        return PrintTree.print(raiz);
+        
+        String s = "<html>" + PrintTree.print(raiz);
+        s = colorir(s, raiz);
+        return s + "</html>" ;
+    }
+    
+    private String colorir(String s, No<T> atual){
+        if(atual == null)return s;
+        if(atual.getCor().equals("PRETO")){
+            s = s.replaceAll(atual.getValor().toString(), "<font color=\"black\">" + atual.getValor().toString() + "</font>");
+        }else{
+            s = s.replaceAll(atual.getValor().toString(), "<font color=\"red\">" + atual.getValor().toString() + "</font>");
+        }
+        String ss = colorir(s, atual.getEsquerda());
+        return colorir(ss, atual.getDireita());
     }
 
     public No<T> inserirAux(No<T> no, T elemento) {
