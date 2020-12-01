@@ -39,7 +39,7 @@ public class AdicionarElemento extends javax.swing.JFrame {
         botaoVoltar = new javax.swing.JToggleButton();
         botaoInserir = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Adicionar");
@@ -141,7 +141,7 @@ public class AdicionarElemento extends javax.swing.JFrame {
 
     private void botaoInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInserirActionPerformed
         this.arvore.inserir((Integer)caixaInsrirInteiro.getValue());
-        System.out.println(this.arvore.navegacaoLRN());
+    
     }//GEN-LAST:event_botaoInserirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

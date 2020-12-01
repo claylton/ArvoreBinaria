@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/model/IArvoreBinaria.java</file>
-            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/model/PrintTree.java</file>
+            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/view/AdicionarElemento.java</file>
+            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/view/RemoverElemento.java</file>
             <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/model/ArvoreBinaria.java</file>
-            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/model/ArvoreBinariaIterator.java</file>
-            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/view/Main.java</file>
             <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/model/No.java</file>
+            <file>file:/G:/GITHUB/Nova%20pasta/ArvoreBinaria/src/view/ExibirArvore.java</file>
         </group>
     </open-files>
 </project-private>

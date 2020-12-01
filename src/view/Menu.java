@@ -5,6 +5,7 @@
  */
 package view;
 
+import javax.swing.JRootPane;
 import model.ArvoreBinaria;
 
 /**
@@ -18,9 +19,11 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
+        this.setUndecorated(true);
+        this.getRootPane().setWindowDecorationStyle(JRootPane.COLOR_CHOOSER_DIALOG);
         initComponents();
         
-        int[] toAdd = new int[]{35,40,20,30};
+        int[] toAdd = new int[]{7,2,1,5};
         for (int i : toAdd) {
             arvore.inserir(i);
         }
@@ -128,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonExibirActionPerformed
 
     private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
-        // TODO add your handling code here:
+        new RemoverElemento(arvore).setVisible(true);
     }//GEN-LAST:event_buttonRemoverActionPerformed
 
     /**

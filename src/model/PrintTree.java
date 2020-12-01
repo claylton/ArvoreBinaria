@@ -94,32 +94,32 @@ public class PrintTree {
                             }
                         }
                     }
-                    System.out.print(c);
+                    //System.out.print(c);
                     arvore += c;
 
                     // lines and spaces
                     if (line.get(j) == null) {
                         for (int k = 0; k < perpiece - 1; k++) {
-                            System.out.print("&nbsp;");
+                            //System.out.print("&nbsp;");
                             arvore += "&nbsp;";
                         }
                     } else {
 
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? "&nbsp;" : "-");
+                            //System.out.print(j % 2 == 0 ? "&nbsp;" : "-");
                             arvore += j % 2 == 0 ? "&nbsp;" : "-";
 
                         }
-                        System.out.print(j % 2 == 0 ? "/" : "\\");
+                        //System.out.print(j % 2 == 0 ? "/" : "\\");
                         arvore += j % 2 == 0 ? "/" : "\\";
 
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? "-" : "&nbsp;");
+                            //System.out.print(j % 2 == 0 ? "-" : "&nbsp;");
                             arvore += j % 2 == 0 ? "-" : "&nbsp;";
                         }
                     }
                 }
-                System.out.println();
+                //System.out.println();
                 arvore += "<br>";
             }
 
@@ -135,18 +135,18 @@ public class PrintTree {
 
                 // a number
                 for (int k = 0; k < gap1; k++) {
-                    System.out.print("&nbsp;");
+                    //System.out.print("&nbsp;");
                     arvore += "&nbsp;";
                 }
-                System.out.print(f);
+                //System.out.print(f);
                 arvore += f;
 
                 for (int k = 0; k < gap2; k++) {
-                    System.out.print("&nbsp;");
+                    //System.out.print("&nbsp;");
                     arvore += "&nbsp;";
                 }
             }
-            System.out.println();
+            //System.out.println();
             arvore += "<br>";
 
             perpiece /= 2;

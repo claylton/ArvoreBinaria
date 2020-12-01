@@ -44,9 +44,11 @@ public class ExibirArvore extends javax.swing.JFrame {
         arvoreRubroNegraLayout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         arvoreRubroNegraLayout.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 51));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Árvore Rubro-Negra");
+        jLabel2.setText("<html><font color=\\\"black\\\">Árvore</font> Rubro<font color=\\\"black\\\">-Negra</font></html>");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         botaoVoltar.setText("Voltar");
@@ -76,7 +78,7 @@ public class ExibirArvore extends javax.swing.JFrame {
                 .addGap(155, 155, 155))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

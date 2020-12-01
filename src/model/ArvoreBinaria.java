@@ -37,12 +37,11 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             if (inserido.contemPai()) {
                 if (inserido.getPai().getCor().equals("VERMELHO")) {
                     balancear(inserido);
-                    System.out.println("trab");
                 }
             }
             tamanho++;
         }
-        System.out.println("asdasdasdasdsad");
+
     }
 
     @Override
@@ -116,9 +115,52 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             return;
         }
         No<T> no = buscaAuxiliar(raiz, elemento);
+        delete(no);
+        /*
         if (no == null) {
             return;
         }
+        No<T> irmao;
+        if (no.éFilhoDireito()) {
+            irmao = no.getPai().getEsquerda();
+        } else {
+            irmao = no.getPai().getDireita();
+        }
+        String noCor = no.getCor();
+        No<T> sucessor = null;
+        if (no.contemFilhoDireito()) {
+            sucessor = menorNo(no.getDireita());
+        }
+
+        String sucessorCor = "PRETO";
+        if (sucessor != null) {
+            sucessorCor = sucessor.getCor();
+        }
+
+        removerAux(no);
+
+        if (noCor.equals("PRETO") && sucessorCor.equals("PRETO")) {
+            removerPretoPreto(irmao);
+        } else if (noCor.equals("PRETO") && sucessorCor.equals("VERMELHO")) {
+            no.setCor("PRETO");
+        } else if (noCor.equals("VERMELHO") && sucessorCor.equals("PRETO")) {
+            System.out.println("vermelho preto");
+        }
+        */
+    }
+
+    private void removerPretoPreto(No<T> no) {
+        if (no == null) {
+            return;
+        }
+
+        if (no.getCor().equals("PRETO")) {
+
+        }
+    }
+
+    private void removerAux(No<T> no) {
+
         if (!no.contemFilhoDireito() && !no.contemFilhoEsquerdo()) {
             removerFolha(no);
         } else if (no.contemFilhoDireito() ^ no.contemFilhoEsquerdo()) {
@@ -128,19 +170,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
             String corSucessor = removerDoisFilhos(no);
 
-            if (corNo.equals(corSucessor) && (corNo.equals("PRETO"))) {
-
-            }
-
         }
-
-        if (no.getCor().equals("PRETO")) {
-
-        }
-    }
-
-    private void percorreArvore(No<T> no) {
-
     }
 
     @Override
@@ -184,18 +214,20 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
     @Override
     public String imprimeArvore() {
-        
+
         String s = "<html>" + PrintTree.print(raiz);
         s = colorir(s, raiz);
-        return s + "</html>" ;
+        return s + "</html>";
     }
-    
-    private String colorir(String s, No<T> atual){
-        if(atual == null)return s;
-        if(atual.getCor().equals("PRETO")){
-            s = s.replaceAll(atual.getValor().toString(), "<font color=\"black\">" + atual.getValor().toString() + "</font>");
-        }else{
-            s = s.replaceAll(atual.getValor().toString(), "<font color=\"red\">" + atual.getValor().toString() + "</font>");
+
+    private String colorir(String s, No<T> atual) {
+        if (atual == null) {
+            return s;
+        }
+        if (atual.getCor().equals("PRETO")) {
+            s = s.replaceAll("&nbsp;" + atual.getValor().toString() + "&nbsp;", "<font color=\"black\">&nbsp;" + atual.getValor().toString() + "&nbsp;</font>");
+        } else {
+            s = s.replaceAll("&nbsp;" + atual.getValor().toString() + "&nbsp;", "<font color=\"red\">&nbsp;" + atual.getValor().toString() + "&nbsp;</font>");
         }
         String ss = colorir(s, atual.getEsquerda());
         return colorir(ss, atual.getDireita());
@@ -293,7 +325,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     private String auxLRN(No<T> no) {
-        String elementos = "";      
+        String elementos = "";
         if (no.contemFilhoEsquerdo()) {
             elementos += auxLRN(no.getEsquerda());
         }
@@ -324,7 +356,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     private String auxLNR(No<T> no) {
-        System.out.println(no);
+
         String elementos = "";
         if (no.contemFilhoEsquerdo()) {
 
@@ -375,8 +407,8 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     private String removerDoisFilhos(No<T> no) {
-        No<T> subEsquerda = no.getEsquerda();
-        No<T> maior = maiorNo(subEsquerda);
+        No<T> subDireita = no.getDireita();
+        No<T> maior = menorNo(subDireita);
         no.setValor(maior.getValor());
         removerUmFilho(maior);
 
@@ -491,6 +523,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
     }
 
     private No<T> menorNo(No<T> no) {
+        if(no == null)return null;
         if (no.contemFilhoEsquerdo()) {
             return menorNo(no.getEsquerda());
         }
@@ -504,12 +537,12 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
 
             if (noAtual.éFilhoDireito() && noAtual.getPai().éFilhoDireito()) {
                 simplesEsquerda(noAtual);
-                System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
+
             } else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoEsquerdo()) {
                 simplesDireita(noAtual);
-                System.out.println("aksdjaskdjsadasdasdasdas");
+
             } else if (noAtual.éFilhoEsquerdo() && noAtual.getPai().éFilhoDireito()) {
-                System.out.println("donfoasdas");
+
                 duplaEsquerda(noAtual);
             } else {
                 duplaDireita(noAtual);
@@ -517,7 +550,7 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
             }
 
         } else {
-            System.out.println("asdasd");
+
             inverterCores(noAtual);
         }
     }
@@ -620,6 +653,202 @@ public class ArvoreBinaria<T extends Comparable<T>> implements IArvoreBinaria<T>
                 pai.getPai().inverterCor();
             }
             no.getTio().inverterCor();
+        }
+    }
+    
+    private void rotacaoEsquerda(No<T> x){
+        if(x == null)return;
+        
+        No<T> y = x.getDireita();
+        
+        x.setDireita(y.getEsquerda());
+        
+        if(y.contemFilhoEsquerdo()){
+            y.getEsquerda().setPai(x);
+        }
+        
+        y.setPai(x.getPai());
+        
+        if(x.contemPai()){
+            if(x.éFilhoEsquerdo()){
+                x.getPai().setEsquerda(y);
+            }else{
+                x.getPai().setDireita(y);
+            }
+        }else{
+            raiz = y;
+        }
+        y.setEsquerda(x);
+        x.setPai(y);
+    }
+    
+    private void rotacaoDireita(No<T> y){
+        if(y == null)return;
+        
+        No<T> x = y.getEsquerda();
+        
+        y.setEsquerda(x.getDireita());
+        
+        if(x.contemFilhoDireito()){
+            x.getDireita().setPai(y);
+        }
+        
+        x.setPai(y.getPai());
+        
+        if(y.contemPai()){
+            if(y.éFilhoEsquerdo()){
+                y.getPai().setEsquerda(x);
+            }else{
+                y.getPai().setDireita(x);
+            }
+        }else{
+            raiz = x;
+        }
+        x.setDireita(y);
+        y.setPai(x);
+    }
+
+////////////////////////
+    private void delete(No<T> v) {
+
+        No<T> u = menorNo(v.getDireita());//sucessor
+
+        No<T> pai = v.getPai();
+
+        if (u == null) {
+            // SE U FOR NULL ENTAO V É FOLHA
+            if (v == raiz) {
+                // SE V FOR RAIZ ENTAO SÓ SETA NULL
+                raiz = v.getEsquerda();
+                raiz.setPai(null);
+                raiz.setCor("PRETO");
+            } else {
+                if (v.getCor().equals("PRETO")) {
+                    // SE V E U FOREM PRETO
+                    // COMO V É FOLHA SÓ FAZ A ROTAÇÃO DO PRETO PRETO (DUPLO PRETO)
+
+                    duploPreto(v);
+                } else {
+                    //SE NÃO, U OU V É VERMELHO
+                    if (v.contemIrmao()) {
+                        //SE TIVER IRMAO FAZ ELE SER VERMELHO
+                        v.getIrmao().setCor("VERMELHO");
+                    }
+                }
+                //DELETA O V
+                if (v.éFilhoEsquerdo()) {
+                    pai.setEsquerda(null);
+                } else {
+                    pai.setDireita(null);
+                }
+            }
+            return;
+        }
+
+        boolean pretoPreto = v.getCor().equals("PRETO") && u.getCor().equals("PRETO");
+
+        if (v.contemUmFilho()) {
+            //V POSSUI SOMENTE UM FILHO
+            if (v == raiz) {
+                //SE FOR RAIZ, SETA O VALOR DE U PARA V E DELETA O U
+                v.setValor(u.getValor());
+                v.setEsquerda(u.getEsquerda());
+                v.setDireita(u.getDireita());
+                delete(u);
+
+            } else {
+                //REMOVE O V,  SETANDO O U NO PAI DE V
+                if (v.éFilhoEsquerdo()) {
+                    pai.setEsquerda(u);
+                } else {
+                    pai.setDireita(u);
+                }
+                u.setPai(pai);
+                if (pretoPreto) {
+                    //ROTAÇÃO DO PRETO PRETO (DUPLO PRETO)
+                    duploPreto(u);
+                } else {
+                    // TER UM VERMELHO PELO MENOS, SETA U DE PRETO
+                    u.setCor("PRETO");
+                }
+            }
+            return;
+        }
+        // SE CHEGAR AQUI QUER DIZER QUE V TEM DOIS FILHOS. TROCA O VALOR E CHAMA O REMOVER DE NOVO
+        this.removerDoisFilhos(v);
+        delete(u);
+
+    }
+
+    private void duploPreto(No<T> x) {
+        //SE FOR RAIZ NÃO PRECISA FAZER ND
+        if (x == raiz) {
+            return;
+        }
+
+        No<T> irmao = x.getIrmao();
+        No<T> pai = x.getPai();
+        //SE X NAO TIVER IRMAO
+        if (irmao == null) {
+            //CHAMA DE NOVO PASSANDO O PAI
+            duploPreto(pai);
+        } else {
+            //SE O IRMAO DE X FOR VEMELHO
+            if (irmao.getCor().equals("VERMELHO")) {
+                //MUDA A COR DO PAI E DO IRMAO DE X
+                pai.setCor("VERMELHO");
+                irmao.setCor("PRETO");
+                //FAZ A ROTACAO SIMPLES DEPEDENDO DO LADO QUE X ESTÁ
+                if (irmao.éFilhoEsquerdo()) {
+                    rotacaoDireita(pai);
+                } else {
+                    rotacaoEsquerda(pai);
+                }
+                duploPreto(x);
+            } else {
+                if (irmao.contemFilhoDeCor("VERMELHO")) {
+                    // SE O IRMAO TIVER PELO MENOS UM FILHO VERMELHO -> OBS: CASO TIVER DOIS FILHOS VERMELHO SÓ O PRIMEIRO IF SERA EXECUTADO
+                    if (irmao.contemFilhoEsquerdo() && irmao.getEsquerda().getCor().equals("VERMELHO")) {
+                        // SE O FILHO VERMELHO FOR O FILHO DA ESQUERDA
+                        if (irmao.éFilhoEsquerdo()) {
+                            //-> ESQUERDA ESQUERDA
+                            irmao.getEsquerda().setCor(irmao.getCor());
+                            irmao.setCor(pai.getCor());
+                            rotacaoDireita(pai);
+                        } else {
+                            // -> DIREITA ESQUERDA
+                            irmao.getEsquerda().setCor(pai.getCor());
+                            rotacaoDireita(irmao);
+                            rotacaoEsquerda(pai);
+                        }
+                    } else {
+                        //SE O FILHO VERMELHO FOR O FILHO DA DIREITA
+                        if (irmao.éFilhoEsquerdo()) {
+                            // -> ESQUERDA DIREITA
+                            irmao.getDireita().setCor(pai.getCor());
+                            rotacaoEsquerda(irmao);
+                            rotacaoDireita(pai);
+                        } else {
+                            // -> DIREITA DIREITA
+                            irmao.getDireita().setCor(irmao.getCor());
+                            irmao.setCor(pai.getCor());
+                            rotacaoEsquerda(pai);
+                        }
+                    }
+                    //MUDA A COR DO PAI PRA PRETO
+                    pai.setCor("PRETO");
+                } else {
+                    // SE NAO, TEM DOIS FILHOS PRETOS.
+                    irmao.setCor("VERMELHO");
+                    //MUDA A COR DO IRMAO PARA PRETO
+                    if (pai.getCor().equals("PRETO")) {
+                        //SE O PAI FOR PRETO, CAI NO DUPLO PRETO DE NOVO, CHAMA PASSANDO O PAI
+                        duploPreto(pai);
+                    } else {
+                        pai.setCor("PRETO");
+                    }
+                }
+            }
         }
     }
 

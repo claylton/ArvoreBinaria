@@ -81,6 +81,20 @@ public class No<T> {
         return contemFilhoDireito() || contemFilhoEsquerdo();
     }
     
+    public boolean contemUmFilho(){
+        return contemFilhoDireito() ^ contemFilhoEsquerdo();
+    }
+    
+    public boolean contemFilhoDeCor(String cor){
+        if(contemFilhoEsquerdo() && esquerda.getCor().equals(cor)){
+            return true;
+        }
+        if(contemFilhoDireito() && direita.getCor().equals(cor)){
+            return true;
+        }
+        return false;
+    }
+    
     public boolean contemPai(){
         return pai != null;
     }
@@ -100,6 +114,18 @@ public class No<T> {
         return false;
     }
     
+    public No<T> getIrmao(){
+        if(pai == null)return null;
+        
+        if(éFilhoEsquerdo()){
+            return  pai.getDireita();
+        }
+        return pai.getEsquerda();
+    }
+    
+    public boolean contemIrmao(){
+        return getIrmao() != null;
+    }
     
     public No<T> getTio() {
         if(contemPai()){
