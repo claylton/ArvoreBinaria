@@ -19,14 +19,14 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
-        this.setUndecorated(true);
-        this.getRootPane().setWindowDecorationStyle(JRootPane.COLOR_CHOOSER_DIALOG);
+
         initComponents();
         
-        int[] toAdd = new int[]{7,2,1,5};
+        int[] toAdd = new int[]{};
         for (int i : toAdd) {
             arvore.inserir(i);
         }
+
     }
 
     /**

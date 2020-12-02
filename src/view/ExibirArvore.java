@@ -40,9 +40,9 @@ public class ExibirArvore extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         arvoreRubroNegraLayout.setBackground(new java.awt.Color(204, 255, 102));
-        arvoreRubroNegraLayout.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
-        arvoreRubroNegraLayout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        arvoreRubroNegraLayout.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        arvoreRubroNegraLayout.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        arvoreRubroNegraLayout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        arvoreRubroNegraLayout.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 51));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -69,7 +69,6 @@ public class ExibirArvore extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(arvoreRubroNegraLayout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
@@ -80,6 +79,7 @@ public class ExibirArvore extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addContainerGap())
+            .addComponent(arvoreRubroNegraLayout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
